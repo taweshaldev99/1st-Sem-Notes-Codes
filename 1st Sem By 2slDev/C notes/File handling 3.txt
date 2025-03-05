@@ -1,0 +1,94 @@
+fseek(),rewind().
+----------------------
+
+
+fseek() is used to move file pointer associated with a given file to a specific position.
+
+Syntax:
+
+   fseek(file pointer,offset,position).
+   fseek(p,5,SEEK_SET)
+// pointer p will move in forward direction for 5 steps starting from start of the file.
+
+
+	fseek(file pointer,offset,position).
+	   fseek(p,-5,SEEK_END)
+// pointer p will move in backward direction for 5 steps starting from end of the file.
+
+
+	fseek(file pointer,offset,position).
+	   fseek(p,-5,SEEK_CUR)
+// pointer p will move in backward direction for 5 steps starting from the current position of the pointer.
+
+
+
+file pointer: Simply a pointer to the file, which can be declared by using keyword
+		"FILE".
+
+offset: numeric value which determines the number of steps pointer would move.
+	This can be both position and negative value.
+	If positive value , pointer would move forward.
+	If negative value , pointer would move backward.
+
+postion: This arguement determines from where to start the pointer movement.
+	
+	a. SEEK_SET: It denotes starting of the file.
+	b. SEEK_CUR: It denotes file pointer’s current position.
+	c. SEEK_END: It denotes end of the file.
+
+
+
+Eg:
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+void main()
+{
+	char x[50];
+	FILE *p;
+	clrscr();
+	p=fopen("C:\\mansan3.txt","r+"); //r+ mode wont erase all the data like w+.
+	if(p==NULL)
+	{
+		printf("\n Error! File not found");
+		exit(0);
+
+	}
+	// Suppose you have "This is india." in mansan3.txt.
+	fseek(p,8,SEEK_SET); // 8 forward movement from starting of file.
+	fseek(p,-3,SEEK_CUR); // This is india.
+	fgets(x,20,p);
+	printf("%s",x);  // is india.
+	rewind(p); //fseek(p,0,SEEK_SET);
+	fgets(x,20,p);
+	printf("\n %s",x);   // This is india.
+	fseek(p,-6,SEEK_END);
+	fgets(x,20,p);
+	printf("\n%s",x);  // india.
+	fclose(p);
+	getch();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

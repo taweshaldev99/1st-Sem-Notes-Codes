@@ -1,0 +1,174 @@
+﻿Files and File Handling in C: 
+
+Generally we use .txt or .bin as file while doing file handling.
+
+txt file= normal text file. (texts in normal file).
+bin file= binary file.  (texts in binary form).
+
+We have special pointer data type called FILE which is used to create a pointer to the file.It helps to access the file.
+
+In file handling concept we are managing and accessing data from a file.In order to do that,we need to have a pointer of FILE data type.
+
+
+eg:
+
+FILE *p; // (We need a pointer to point to file as well).
+
+If you have a file named abc.txt, then by using pointer *p, we can access the file and use the data or manipulate the data within the file.
+
+
+File Handling is the storing of data in a file using a program. In C programming language, the programs store results, and other data of the program to a file using file handling in C. Also, we can extract/fetch data from a file to work with it in the program.
+
+The operations that you can perform on a File in C are −
+
+1.Creating a new file
+
+2.Opening an existing file
+
+3.Reading data from an existing file
+
+4.Writing data to a file
+
+5.Moving data to a specific location on the file
+
+6.Closing the file
+
+
+1.Creating a new file and 6.Closing the file
+-------------------------------------------------
+
+a.fopen()=This function is used to open or create the new file.
+b.fclose()=This function is used to close the file.
+
+a. fopen()
+------------
+
+Syntax:
+
+filePointer = fopen(filepath, mode);
+
+p=fopen("c:\test\abc.bin","w+");
+if(p==NULL)
+{
+	printf("\n Error!File could not be opened");
+	exit(0);
+}
+
+file pointer is a pointer which points to the file which we opened or created (FILE *pointer name;)
+
+file path= Path to the file storage location.
+
+mode= Mode paramater is that parameter which determines the purpose of the user with the file.
+
+File opening modes in C:  (r=read,w=write,a=append)
+ 
+
+1.“r” – Searches file. If the file is opened successfully fopen( ) loads it into memory and sets up a pointer which points to the first character in it. If the file cannot be opened fopen( ) returns NULL.
+
+
+2. “rb” – Open for reading in binary mode. If the file does not exist, fopen( ) returns NULL.
+
+3. “w” – Searches file. If the file exists, its contents are overwritten. If the file doesn’t exist, a new file is created. Returns NULL, if unable to open file.
+
+4. “wb” – Open for writing in binary mode. If the file exists, its contents are overwritten. If the file does not exist, it will be created.
+
+5. “a” – Searches file. If the file is opened successfully fopen( ) loads it into memory and sets up a pointer that points to the last character in it. If the file doesn’t exist, a new file is created. Returns NULL, if unable to open file.
+
+6. “ab” – Open for append in binary mode. Data is added to the end of the file. If the file does not exist, it will be created.
+
+7. “r+” – (read and write mode) Searches file. If is opened successfully fopen( ) loads it into memory and sets up a pointer which points to the first character in it. Returns NULL, if unable to open the file.
+
+8. “rb+” – Open for both reading and writing in binary mode. If the file does not exist, fopen( ) returns NULL.
+
+9. “w+” – Searches file. If the file exists, its contents are overwritten. If the file doesn’t exist a new file is created. Returns NULL, if unable to open file.
+
+
+10. “wb+” – Open for both reading and writing in binary mode. If the file exists, its contents are overwritten. If the file does not exist, it will be created.
+
+11. “a+” – Searches file. If the file is opened successfully fopen( ) loads it into memory and sets up a pointer which points to the last character in it. If the file doesn’t exist, a new file is created. Returns NULL, if unable to open file.
+
+12. “ab+” – Open for both reading and appending in binary mode. If the file does not exist, it will be created.
+-----------------------------------------------------------------
+
+eg:
+
+ (let us suppose we have a file named abc.txt in C:\test.)
+
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{
+	FILE *p;
+	p=fopen("C:\test\abc.txt","w+");  //file gets opened.
+	if(p==NULL)
+	{
+		printf("File doesn't exist");
+		exit(0);
+	}
+
+	fclose(p);  //file gets closed
+ getch();
+}
+
+
+b. fclose():
+
+	This function closes the file opened by fopen();
+
+syntax:
+
+#
+fclose(pointer name);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

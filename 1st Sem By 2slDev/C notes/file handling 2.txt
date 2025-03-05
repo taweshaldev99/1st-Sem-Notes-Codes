@@ -1,0 +1,356 @@
+
+Till today what were the input commands?
+:scanf(),gets(),getchar().
+
+Till today what were the output commands?
+:printf(),puts(),putchar().
+
+
+
+Input and Output in File Handling:
+------------------------------------------------------------
+
+There are following commands for input and output with file. (.txt format file)
+
+1.fprintf().  //for writing on a file.
+2.fscanf().   //for reading from a file.
+3.fputs().     //for writing on a file.
+4.fgets().    //for reading from a file.
+
+
+But whenever we are dealing with programs related to structure, fprintf,fscanf creates issues sometimes.
+
+So in case of structure:
+--------------------------------------
+1.fread(): //for reading structure on a file.
+2.fwrite(): //for writing structure on a file.
+
+
+4.Writing Operations on a file in C
+_____________________________________________________________________________
+
+a. fprintf() : //for writing on a file using format specifier
+
+ It is similar to printf(). It uses format specifiers like %d,%s,%f and others.
+
+Syntax:
+
+fprintf(file pointer,format specifiers,variables/arguement);
+
+
+program:
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+void main()
+{
+	FILE *p;
+	int x;
+	clrscr();
+	p=fopen("C:\\avengers.txt","w+");
+	if(p==NULL)
+	{
+		printf("\n The File couldnot be opened");
+		exit(0);
+	}
+	printf("\n Enter value of x");
+	scanf("%d",&x);  //x=5 ,These 2 lines ask value from the user and store it in variable 'x'.
+	fprintf(p,"%d",x);  //This line of code will write content of variable x to the file avengers.txt.
+	fclose(p);
+	getch();
+}
+
+b. fputs(): //for writing on a file without format specifier
+
+ Fputs also does similar task like fprintf i.e writing on the file, but without format specifier.
+
+syntax:
+
+fputs(string or variable name,pointer to the file);
+
+
+eg:
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+void main()
+{
+
+	char name[20]="THIS IS NOT COOL" ;
+	FILE *p;
+	clrscr();
+	p=fopen("C:\\avengers.txt","w+");
+	if(p==NULL)
+	{
+		printf("\n Error! File couldn't be opened");
+		exit(0);
+	}
+       //	printf("Enter name");
+       //	scanf("%s",name);  //name= Deepak
+
+	fputs("THIS IS AWESOME\n",p);
+	fputs("DEEPAK KHADKA",p);
+
+	fprintf(p,"NO 1 Point: %s",name);
+
+
+
+	fclose(p);
+
+	getch();
+}
+
+c. fwrite():  (fread and fwrite commands work in binary modes).
+
+	fwrite is specifically used to write content of structures on file.
+
+	
+	syntax:
+		
+fwrite(addressofelementtobewritten,sizeofelement,numberofelements,File Pointer);
+
+
+eg:
+
+
+#include <stdio.h>
+struct student
+{
+   char name[50];
+   int height;
+};
+int main(){
+    struct student stud1[5], stud2[5];   
+    FILE *fptr;
+    int i;
+
+    fptr = fopen("file.txt","wb");
+    for(i = 0; i < 5; ++i)
+    {
+        fflush(stdin);
+        printf("Enter name: ");
+        gets(stud1[i].name);
+
+        printf("Enter height: "); 
+        scanf("%d", &stud1[i].height); 
+    }
+
+    fwrite(stud1, sizeof(stud1), 1, fptr);
+  
+    fclose(fptr);
+}
+
+
+3. Reading data from a file
+------------------------------------------------------------------------------
+
+Commands: fscanf(),fgets(),fread(). -> reads from a file.  // file to console.
+	  fprintf(),fputs(),fwrite()->Writes on a file // console to file.
+
+
+a. fscanf():
+
+Syntax: 
+	int fscanf(file pointer, format specifiers, variables/arguements );
+
+
+int x=5;
+fprintf(p,"%d",x);
+
+-> Value of x is written to the file which is pointed by pointer "p".
+
+  value of x is taken from user in console and written to the file pointed by p. 
+
+
+int x;
+fscanf(p,"%d",x);  //suppose there is value 10 in file.
+printf("The value in file is %d",x); //The value in file is 10.
+
+->value from file  which is pointed by pointer p is written to variable x.
+
+   A value from file p is taken and copied to variable x.
+
+
+what if there is no data inside the file or what if the file is empty?
+
+Ans: 
+
+  FILE *p;
+  p=fopen("abc.txt","w+");
+  
+   *what happens if in above code, file is unable to open?
+    : NULL value is placed at p.
+
+eg of fgets:
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+int main()
+{
+
+int y[20];
+FILE *p;
+p=fopen("D:\\test.txt","r");
+if(p==NULL)
+{
+printf("\n The File couldnot be opened");
+exit(0);
+}
+
+while(fgets(y,20,p) != NULL)   //p=3
+{
+puts(y);  //x=8345
+}
+
+fclose(p);
+return 0;
+}
+---------------------------------------------------------------------
+
+
+Homework:
+
+WAP to read a line from the text file "abc.txt", and count how many uppercase and lower case characters are there.
+
+
+-> File line ->extract-> line[50] (Array);
+
+
+line[50]= for loop, condition, uppercase, lowercase.
+
+
+---------------------------------------------------------------------
+
+structure->file.
+
+file structure->console.
+
+Pointer movement: fseek();
+
+
+: fread(),fseek()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
